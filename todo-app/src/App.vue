@@ -1,10 +1,10 @@
 <template>
   <main>
     <div class="container">
-      <h1>欢迎使用 mini kang 待办事项！</h1>
+      <h1>HelloAlexCc</h1>
       <todo-add :tid="todos.length" @add-todo="addTodo" />
       <todo-filter :selected="filter" @change-filter="filter = $event" />
-      <todo-list :todos="filteredTodos" />
+      <todo-list :todos="filteredTodos" @delete-item="deleteTodo" />
     </div>
   </main>
 </template>
@@ -24,12 +24,17 @@ export default {
     TodoList,
   },
   setup() {
-    const {todos, addTodo} = useTodos();
+    // 拿到 todo 清单，以及向 todo 清单添加任务的方法
+    const {todos, addTodo, deleteTodo} = useTodos()
+
+    // filter 表示 key = ['all', 'done', 'todo']
     const {filter, filteredTodos} = useFilteredTodos(todos);
+
     return {
       todos,
       filter,
       addTodo,
+      deleteTodo,
       filteredTodos,
     };
   },

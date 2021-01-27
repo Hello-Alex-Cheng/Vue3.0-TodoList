@@ -14,17 +14,20 @@ export default {
   name: "TodoAdd",
   props: ["tid"],
   setup(props, context) {
-    return useEmitAddTodo(props.tid, context.emit);
+    return useEmitAddTodo(context.emit);
   },
 };
 
 // TodoAdd 组件专属 Composable
-function useEmitAddTodo(tid, emit) {
+function useEmitAddTodo(emit) {
   const todoContent = ref("");
 
   const emitAddTodo = () => {
+    if (todoContent.value === '') {
+      return alert('请填写明确的任务!')
+    }
     const todo = {
-      id: tid,
+      id: Math.random(),
       content: todoContent.value,
       completed: false,
     };

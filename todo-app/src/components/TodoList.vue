@@ -4,6 +4,7 @@
       v-for="todo in todos"
       :key="todo.id"
       @change-state="todo.completed = $event.target.checked"
+      @delete-item="$event => this.$emit('delete-item', $event.id)"
       :todo-item="todo"
     ></todo-list-item>
   </div>
@@ -17,7 +18,7 @@ export default {
   components: {
     TodoListItem,
   },
-  props: ["todos"],
+  props: ["todos"]
 };
 </script>
 

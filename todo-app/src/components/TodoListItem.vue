@@ -9,6 +9,7 @@
       {{ todoItem.content }}
       <span class="check-button"></span>
     </label>
+    <button class="delete-btn" @click="$emit('delete-item', todoItem)">删除</button>
   </div>
 </template>
 
@@ -18,11 +19,26 @@ export default { name: "TodoListItem", props: ["todoItem"] };
 
 <style>
 .todo-item {
+  position: relative;
   background: white;
   padding: 16px;
   border-radius: 8px;
   color: #626262;
+  display: flex;
+  justify-content: space-between;
 }
+
+.delete-btn {
+  position: absolute;
+  top: 50% - 27px;
+  right: 12px;
+  width: 54px;
+  background-color: red;
+  border: 1px solid red;
+  color: #fff;
+  border-radius: 3px;
+}
+
 
 .todo-item label {
   position: relative;
